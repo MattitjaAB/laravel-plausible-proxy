@@ -1,4 +1,4 @@
-# This is my package laravel-plausible-proxy
+# laravel-plausible-proxy
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mattitjaab/laravel-plausible-proxy.svg?style=flat-square)](https://packagist.org/packages/mattitjaab/laravel-plausible-proxy)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/mattitjaab/laravel-plausible-proxy/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/mattitjaab/laravel-plausible-proxy/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -6,6 +6,10 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/mattitjaab/laravel-plausible-proxy.svg?style=flat-square)](https://packagist.org/packages/mattitjaab/laravel-plausible-proxy)
 
 A Laravel package for proxying Plausible Analytics, improving performance and privacy.
+
+## Requirements
+- Laravel 11
+- PHP 8.4+
 
 ## 🚀 Installation
 
