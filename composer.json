@@ -1,10 +1,12 @@
 {
     "name": "mattitjaab/laravel-plausible-proxy",
-    "description": "This is my package laravel-plausible-proxy",
+    "description": "A Laravel package for proxying Plausible Analytics, improving performance and privacy.",
     "keywords": [
         "Mattitja AB",
+        "MattitjaAB",
         "laravel",
-        "laravel-plausible-proxy"
+        "laravel-plausible-proxy",
+        "plausible"
     ],
     "homepage": "https://github.com/mattitjaab/laravel-plausible-proxy",
     "license": "MIT",
