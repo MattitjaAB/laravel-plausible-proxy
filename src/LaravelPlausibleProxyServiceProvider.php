@@ -2,9 +2,9 @@
 
 namespace MattitjaAB\LaravelPlausibleProxy;
 
+use MattitjaAB\LaravelPlausibleProxy\Commands\LaravelPlausibleProxyCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use MattitjaAB\LaravelPlausibleProxy\Commands\LaravelPlausibleProxyCommand;
 
 class LaravelPlausibleProxyServiceProvider extends PackageServiceProvider
 {
