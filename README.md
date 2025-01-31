@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/mattitjaab/laravel-plausible-proxy/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/mattitjaab/laravel-plausible-proxy/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/mattitjaab/laravel-plausible-proxy.svg?style=flat-square)](https://packagist.org/packages/mattitjaab/laravel-plausible-proxy)
 
-A Laravel package for proxying Plausible Analytics, improving performance and privacy.
+A Laravel package for proxying Plausible Analytics, improving performance.
 
 ## Requirements
 - Laravel 11
@@ -26,27 +26,15 @@ A Laravel package for proxying Plausible Analytics, improving performance and pr
 3. Add the following environment variables to your `.env` file:
    ```env
    PLAUSIBLE_DOMAIN=https://plausible.io
-   PLAUSIBLE_SITE=example.com
-   ```
-
-4. **(Optional)** If you want to use Laravel Queues to send events in the background, ensure your queue driver is set up correctly:
-   ```env
-   QUEUE_CONNECTION=database
-   ```
-   Then run migrations to create the necessary queue tables:
-   ```sh
-   php artisan queue:table
-   php artisan migrate
    ```
 
 ## ⚙️ Configuration
 
-The `config/plausible-proxy.php` file allows you to customize the package settings:
+The `config/plausible-proxy.php` file allows you to customize the plausible domain:
 
 ```php
 return [
     'domain' => env('PLAUSIBLE_DOMAIN', 'https://plausible.io'),
-    'site' => env('PLAUSIBLE_SITE', 'example.com'),
 ];
 ```
 
@@ -63,21 +51,13 @@ After installation, you can include the script like this:
 The route `/js/script.js` is automatically handled and caches the script for **6 hours**.
 
 ### **2. Sending Events to Plausible**
-Instead of sending events directly to `plausible.io`, you can now send them to `/api/event`, and they will be queued and processed asynchronously.
-
-Example request:
-```sh
-curl -X POST "https://example.com/api/event" \
-     -H "Content-Type: application/json" \
-     -d '{"n":"pageview","u":"https://example.com/page","d":"example.com"}'
-```
+Instead of sending events directly to plausible.io, the script is loaded from /js/script.js and proxies the request to Plausible via /api/event, helping to prevent blocking by ad blockers.
 
 ## ✅ Features
 
-- 🚀 **Fast & Optimized**: Caches the Plausible script to reduce external calls.
-- 🔒 **Privacy-Friendly**: Prevents direct calls to `plausible.io`.
-- 📊 **Improved Performance**: Events are processed via Laravel Queues to avoid blocking user interactions.
-- 🛠 **Fully Configurable**: Easily set your own Plausible instance and domain via `.env`.
+- 🚀 **Fast & Optimized**: Caches the Plausible script to reduce external calls. 
+- ✅ No issues with ad blockers: Proxies the request via a local API endpoint.
+- 🛠 **Fully Configurable**: Easily set your own Plausible instance via `.env`.
 
 ## 🛠 Testing
 
