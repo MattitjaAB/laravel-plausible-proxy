@@ -15,7 +15,7 @@ it('returns plausible script from cache', function () {
 
 it('fetches plausible script if not cached', function () {
     Http::fake([
-        'https://plausible.io/js/script.js' => Http::response('console.log("Plausible script");', 200),
+        config('plausible-proxy.domain').'/js/script.js' => Http::response('console.log("Plausible script");', 200),
     ]);
 
     $response = $this->get('/js/script.js');
@@ -29,7 +29,7 @@ it('fetches plausible script if not cached', function () {
 
 it('handles failed script fetch', function () {
     Http::fake([
-        'https://plausible.io/js/script.js' => Http::response('', 500),
+        config('plausible-proxy.domain').'/js/script.js' => Http::response('', 500),
     ]);
 
     $response = $this->get('/js/script.js');
@@ -49,26 +49,44 @@ it('rejects invalid event data', function () {
         ->assertJsonStructure(['status', 'errors']);
 });
 
-it('accepts valid event data and defers request', function () {
-    Http::fake();
+it('accepts valid event data and forwards headers', function () {
+    config()->set('plausible-proxy.domain', 'https://plausible.io');
 
-    $concurrencyMock = Mockery::mock('alias:Illuminate\Support\Facades\Concurrency');
-    $concurrencyMock->shouldReceive('defer')->once()->andReturnUsing(function ($callback) {
-        $callback();
-    });
+    Http::fake([
+        'https://plausible.io/api/event' => function ($request) {
+            dump($request->headers());
+            dump($request->data());
+            return Http::response(['status' => 'queued'], 200);
+        },
+    ]);
+
+
+    $headers = [
+        'User-Agent' => 'TestAgent',
+        'Accept' => 'application/json',
+    ];
 
     $response = $this->postJson('/api/event', [
         'n' => 'pageview',
         'u' => 'https://example.com/page',
         'd' => 'example.com',
-    ]);
+    ], $headers);
 
     $response->assertStatus(200)
         ->assertJson(['status' => 'queued']);
 
-    Http::assertSent(fn ($request) => $request->url() === config('plausible-proxy.domain').'/api/event' &&
-        $request['n'] === 'pageview'
-    );
+    Http::assertSentCount(1);
 
-    Mockery::close();
+    Http::assertSent(function ($request) {
+        dump($request->url());
+        dump($request->headers());
+        dump($request->data());
+
+        return $request->url() === 'https://plausible.io/api/event'
+            && isset($request['n']) && $request['n'] === 'pageview'
+            && isset($request['u']) && $request['u'] === 'https://example.com/page'
+            && isset($request['d']) && $request['d'] === 'example.com';
+    });
 });
+
+
