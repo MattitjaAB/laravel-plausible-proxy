@@ -54,9 +54,6 @@ it('accepts valid event data and forwards headers', function () {
 
     Http::fake([
         'https://plausible.io/api/event' => function ($request) {
-            dump($request->headers());
-            dump($request->data());
-
             return Http::response(['status' => 'queued'], 200);
         },
     ]);
@@ -78,10 +75,6 @@ it('accepts valid event data and forwards headers', function () {
     Http::assertSentCount(1);
 
     Http::assertSent(function ($request) {
-        dump($request->url());
-        dump($request->headers());
-        dump($request->data());
-
         return $request->url() === 'https://plausible.io/api/event'
             && isset($request['n']) && $request['n'] === 'pageview'
             && isset($request['u']) && $request['u'] === 'https://example.com/page'

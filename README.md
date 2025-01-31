@@ -9,7 +9,7 @@ A Laravel package for proxying Plausible Analytics, improving performance and pr
 
 ## Requirements
 - Laravel 11
-- PHP 8.4+
+- PHP 8.3+
 
 ## 🚀 Installation
 
