@@ -56,10 +56,10 @@ it('accepts valid event data and forwards headers', function () {
         'https://plausible.io/api/event' => function ($request) {
             dump($request->headers());
             dump($request->data());
+
             return Http::response(['status' => 'queued'], 200);
         },
     ]);
-
 
     $headers = [
         'User-Agent' => 'TestAgent',
@@ -88,5 +88,3 @@ it('accepts valid event data and forwards headers', function () {
             && isset($request['d']) && $request['d'] === 'example.com';
     });
 });
-
-

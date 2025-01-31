@@ -26,7 +26,7 @@ Route::post('api/event', function (Request $request) {
     }
 
     $headers = collect($request->headers->all())
-        ->mapWithKeys(fn($value, $key) => [$key => is_array($value) ? implode(', ', $value) : $value])
+        ->mapWithKeys(fn ($value, $key) => [$key => is_array($value) ? implode(', ', $value) : $value])
         ->all();
 
     Http::withHeaders($headers)->post(config('plausible-proxy.domain').'/api/event', $data);
