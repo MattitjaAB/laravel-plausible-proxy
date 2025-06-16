@@ -8,8 +8,8 @@
 A Laravel package for proxying Plausible Analytics, improving performance.
 
 ## Requirements
-- Laravel 11
-- PHP 8.3+
+- Laravel 12
+- PHP 8.3, 8.4
 
 ## 🚀 Installation
 
