@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-plausible-proxy` will be documented in this file.
 
+## v1.4 - 2025-06-16
+
+### What's Changed
+
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/MattitjaAB/laravel-plausible-proxy/pull/3
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot in https://github.com/MattitjaAB/laravel-plausible-proxy/pull/4
+* Added support for L12 by @mathiaspalmqvist in https://github.com/MattitjaAB/laravel-plausible-proxy/pull/7
+
+### New Contributors
+
+* @dependabot made their first contribution in https://github.com/MattitjaAB/laravel-plausible-proxy/pull/3
+
+**Full Changelog**: https://github.com/MattitjaAB/laravel-plausible-proxy/compare/v1.3...v1.4
+
 ## v1.3 - 2025-01-31
 
 ### What's Changed
