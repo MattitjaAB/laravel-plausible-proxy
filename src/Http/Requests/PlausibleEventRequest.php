@@ -22,4 +22,4 @@ class PlausibleEventRequest extends FormRequest
             'p' => ['nullable', 'array'],
         ];
     }
-} 
+}
