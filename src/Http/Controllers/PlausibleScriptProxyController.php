@@ -35,4 +35,4 @@ class PlausibleScriptProxyController
             ->header('Content-Type', 'application/javascript')
             ->header('Cache-Control', 'public, max-age=86400');
     }
-} 
+}

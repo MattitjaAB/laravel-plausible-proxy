@@ -19,4 +19,4 @@ class PlausibleEventApiController
 
         return response()->json(['status' => 'queued']);
     }
-} 
+}
