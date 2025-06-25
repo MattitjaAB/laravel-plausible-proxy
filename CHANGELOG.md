@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-plausible-proxy` will be documented in this file.
 
+## v1.5 - 2025-06-25
+
+### What's Changed
+
+* Cleanup by @mathiaspalmqvist in https://github.com/MattitjaAB/laravel-plausible-proxy/pull/8
+
+**Full Changelog**: https://github.com/MattitjaAB/laravel-plausible-proxy/compare/v1.4...v1.5
+
 ## v1.4 - 2025-06-16
 
 ### What's Changed
