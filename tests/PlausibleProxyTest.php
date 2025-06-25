@@ -46,7 +46,7 @@ it('rejects invalid event data', function () {
     ]);
 
     $response->assertStatus(422)
-        ->assertJsonStructure(['status', 'errors']);
+        ->assertJsonValidationErrors(['u' => 'The u field must be a valid URL.']);
 });
 
 it('accepts valid event data and forwards headers', function () {
