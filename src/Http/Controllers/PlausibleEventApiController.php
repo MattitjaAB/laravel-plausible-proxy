@@ -11,7 +11,7 @@ class PlausibleEventApiController
     public function __invoke(PlausibleEventRequest $request): JsonResponse
     {
         $headers = collect($request->headers->all())
-            ->mapWithKeys(fn ($value, $key) => [$key => is_array($value) ? implode(', ', $value) : $value])
+            ->mapWithKeys(fn ($value, $key) => [$key => implode(', ', $value)])
             ->all();
 
         Http::withHeaders($headers)
